@@ -1,7 +1,8 @@
 # Anatomy-Guided Residual Motion Diffusion for Controllable 4D Cardiac MRI Synthesis
 
+Accepted for MICCAI 2026 ! See you there ! 
 
-This repository will share the code later after cleaning it :)
+This repository will share the code later after cleaning it :D
 
 <p align="center">
   <img src="imgs/overview.png"/>
@@ -59,6 +60,25 @@ pip install -r requirements.txt
 1. Download both [ACDC](https://www.creatis.insa-lyon.fr/Challenge/acdc/databases.html) and [Kaggle](https://www.kaggle.com/competitions/second-annual-data-science-bowl/overview) dataset in the folder `data/` and unzip them.
 2. Use the preprocessing of [CineMA](https://github.com/mathpluscode/CineMA)
 3. Make sure the preprocessed data is saved in folder `data/ACDC_preprocessed` and `data/DSB_nifti`. It will also generate the metadata.csv files for both datasets.
+
+### Train
+As the proposed method consists of 4 stages, we provide separate training scripts for each stage. You can run them sequentially to train the full model:
+```bash
+python -m train.train_stage1 # Finetune the VAE on the 2D data.
+python -m train.train_stage2 # Train the flow predictor on the latent space.
+python -m train.train_stage3 # Finetune the Stable Diffusion UNet on the first frame.
+python -m train.train_stage4 # Finetune the Stable Diffusion UNet on the full sequence with flow guidance.
+```
+
+### Inference
+The code for each step of inference is available to check quickly if it works per block.
+```bash
+python -m inference.inference_stage1.py 
+...
+python -m inference.inference_full.py 
+```
+
+The global inference `inference_full.py` allow to generate the full sequence from text prompt.
 
 -->
 
