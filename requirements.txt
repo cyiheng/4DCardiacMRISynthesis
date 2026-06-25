@@ -1,0 +1,15 @@
+diffusers==0.35.1
+imageio==2.37.0
+monai[all]==1.4.1rc1
+# torch==2.6.0
+tqdm==4.67.1
+transformers==4.40.2
+matplotlib==3.10.3
+safetensors==0.5.3
+pillow==11.2.1
+numpy<2
+nibabel==5.4.2
+einops==0.8.2
+pandas==2.3.3
+accelerate==1.14.0
+bitsandbytes==0.49.2
